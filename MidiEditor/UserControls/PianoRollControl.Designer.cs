@@ -41,6 +41,7 @@
             this.pictureBoxBackgroundGrid.TabIndex = 0;
             this.pictureBoxBackgroundGrid.TabStop = false;
             this.pictureBoxBackgroundGrid.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxBackgroundGrid_Paint);
+            this.pictureBoxBackgroundGrid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxBackgroundGrid_MouseDown);
             // 
             // PianoRollControl
             // 
@@ -48,6 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pictureBoxBackgroundGrid);
             this.Name = "PianoRollControl";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PianoRollControl_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBackgroundGrid)).EndInit();
             this.ResumeLayout(false);
 

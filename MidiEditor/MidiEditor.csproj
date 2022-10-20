@@ -55,35 +55,162 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSettings.cs" />
+    <Compile Include="Helper classes\AppTools.cs" />
+    <Compile Include="EventProperties\ChannelPressureEventProperties.cs" />
+    <Compile Include="EventProperties\ControlChangeEventProperties.cs" />
+    <Compile Include="Helper classes\AppSettings.cs" />
+    <Compile Include="EventProperties\KeyPressureEventProperties.cs" />
+    <Compile Include="EventProperties\PitchBendEventProperties.cs" />
+    <Compile Include="EventProperties\ProgramChangeEventProperties.cs" />
+    <Compile Include="EventProperties\SysExEventProperties.cs" />
+    <Compile Include="EventProperties\TempoChangeEventProperties.cs" />
+    <Compile Include="EventProperties\TextEventProperties.cs" />
+    <Compile Include="EventProperties\TimeSignatureEventProperties.cs" />
+    <Compile Include="EventProperties\KeySignatureEventProperties.cs" />
+    <Compile Include="Helper classes\MidiFileReader.cs" />
+    <Compile Include="Helper classes\MidiFileWriter.cs" />
+    <Compile Include="Forms\PlaybackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PlaybackForm.Designer.cs">
+      <DependentUpon>PlaybackForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Events\ChannelPressureEventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Events\ChannelPressureEventControl.Designer.cs">
+      <DependentUpon>ChannelPressureEventControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Events\ControlChangeEventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Events\ControlChangeEventControl.Designer.cs">
+      <DependentUpon>ControlChangeEventControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ChangeTrackNameForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ChangeTrackNameForm.Designer.cs">
       <DependentUpon>ChangeTrackNameForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EventProperties.cs" />
+    <Compile Include="EventProperties\NoteOnOffEventProperties.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\InstrumentSelectionForm.cs">
+    <Compile Include="Helper classes\MakeButtonResizeableAndMovable.cs" />
+    <Compile Include="Helper classes\PianoRollScaling.cs" />
+    <Compile Include="Helper classes\SoundMaker.cs" />
+    <Compile Include="Forms\Events\NewTextEventForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\InstrumentSelectionForm.Designer.cs">
-      <DependentUpon>InstrumentSelectionForm.cs</DependentUpon>
+    <Compile Include="Forms\Events\NewTextEventForm.Designer.cs">
+      <DependentUpon>NewTextEventForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helping classes\MakeButtonResizeableAndMovable.cs" />
-    <Compile Include="Forms\NewTrackForm.cs">
+    <Compile Include="Forms\Events\NewTempoChangeEventForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NewTrackForm.Designer.cs">
-      <DependentUpon>NewTrackForm.cs</DependentUpon>
+    <Compile Include="Forms\Events\NewTempoChangeEventForm.Designer.cs">
+      <DependentUpon>NewTempoChangeEventForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helping classes\Scaling.cs" />
-    <Compile Include="Helping classes\SoundMaker.cs" />
+    <Compile Include="UserControls\Events\KeyPressureEventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Events\KeyPressureEventControl.Designer.cs">
+      <DependentUpon>KeyPressureEventControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Events\KeySignatureEventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Events\KeySignatureEventControl.Designer.cs">
+      <DependentUpon>KeySignatureEventControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Events\NewChannelPressureEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Events\NewChannelPressureEventForm.Designer.cs">
+      <DependentUpon>NewChannelPressureEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Events\NewControlChangeEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Events\NewControlChangeEventForm.Designer.cs">
+      <DependentUpon>NewControlChangeEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Events\NewKeyPressureEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Events\NewKeyPressureEventForm.Designer.cs">
+      <DependentUpon>NewKeyPressureEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Events\NewKeySignatureEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Events\NewKeySignatureEventForm.Designer.cs">
+      <DependentUpon>NewKeySignatureEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Events\NewPitchBendEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Events\NewPitchBendEventForm.Designer.cs">
+      <DependentUpon>NewPitchBendEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Events\NewProgramChangeEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Events\NewProgramChangeEventForm.Designer.cs">
+      <DependentUpon>NewProgramChangeEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Events\NewSysExEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Events\NewSysExEventForm.Designer.cs">
+      <DependentUpon>NewSysExEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Events\PitchBendEventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Events\PitchBendEventControl.Designer.cs">
+      <DependentUpon>PitchBendEventControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Events\ProgramChangeEventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Events\ProgramChangeEventControl.Designer.cs">
+      <DependentUpon>ProgramChangeEventControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Events\SysExEventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Events\SysExEventControl.Designer.cs">
+      <DependentUpon>SysExEventControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Events\TimeSignatureEventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Events\TimeSignatureEventControl.Designer.cs">
+      <DependentUpon>TimeSignatureEventControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Events\NewTimeSignatureEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Events\NewTimeSignatureEventForm.Designer.cs">
+      <DependentUpon>NewTimeSignatureEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Events\TempoChangeEventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Events\TempoChangeEventControl.Designer.cs">
+      <DependentUpon>TempoChangeEventControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Events\TextEventControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Events\TextEventControl.Designer.cs">
+      <DependentUpon>TextEventControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TimelineControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,12 +228,6 @@
     </Compile>
     <Compile Include="UserControls\ChannelControl.Designer.cs">
       <DependentUpon>ChannelControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\PlaybackControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\PlaybackControl.Designer.cs">
-      <DependentUpon>PlaybackControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PianoKeysControl.cs">
       <SubType>UserControl</SubType>
@@ -131,11 +252,41 @@
     <EmbeddedResource Include="Forms\ChangeTrackNameForm.resx">
       <DependentUpon>ChangeTrackNameForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InstrumentSelectionForm.resx">
-      <DependentUpon>InstrumentSelectionForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Events\NewChannelPressureEventForm.resx">
+      <DependentUpon>NewChannelPressureEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Events\NewControlChangeEventForm.resx">
+      <DependentUpon>NewControlChangeEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Events\NewKeyPressureEventForm.resx">
+      <DependentUpon>NewKeyPressureEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Events\NewKeySignatureEventForm.resx">
+      <DependentUpon>NewKeySignatureEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Events\NewPitchBendEventForm.resx">
+      <DependentUpon>NewPitchBendEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Events\NewProgramChangeEventForm.resx">
+      <DependentUpon>NewProgramChangeEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Events\NewSysExEventForm.resx">
+      <DependentUpon>NewSysExEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Events\NewTempoChangeEventForm.resx">
+      <DependentUpon>NewTempoChangeEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Events\NewTextEventForm.resx">
+      <DependentUpon>NewTextEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Events\NewTimeSignatureEventForm.resx">
+      <DependentUpon>NewTimeSignatureEventForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PlaybackForm.resx">
+      <DependentUpon>PlaybackForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -152,6 +303,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\EditorsControl.resx">
       <DependentUpon>EditorsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Events\ChannelPressureEventControl.resx">
+      <DependentUpon>ChannelPressureEventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Events\ControlChangeEventControl.resx">
+      <DependentUpon>ControlChangeEventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Events\KeyPressureEventControl.resx">
+      <DependentUpon>KeyPressureEventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Events\KeySignatureEventControl.resx">
+      <DependentUpon>KeySignatureEventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Events\PitchBendEventControl.resx">
+      <DependentUpon>PitchBendEventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Events\ProgramChangeEventControl.resx">
+      <DependentUpon>ProgramChangeEventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Events\SysExEventControl.resx">
+      <DependentUpon>SysExEventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Events\TempoChangeEventControl.resx">
+      <DependentUpon>TempoChangeEventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Events\TextEventControl.resx">
+      <DependentUpon>TextEventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Events\TimeSignatureEventControl.resx">
+      <DependentUpon>TimeSignatureEventControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PianoKeysControl.resx">
       <DependentUpon>PianoKeysControl.cs</DependentUpon>
@@ -178,6 +359,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pencil icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eraser icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Melanchall.DryWetMidi.6.1.2\build\Melanchall.DryWetMidi.targets" Condition="Exists('..\packages\Melanchall.DryWetMidi.6.1.2\build\Melanchall.DryWetMidi.targets')" />

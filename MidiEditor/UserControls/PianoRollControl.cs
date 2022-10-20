@@ -1,22 +1,17 @@
-﻿using Melanchall.DryWetMidi.Core;
-using Melanchall.DryWetMidi.Interaction;
+﻿using Melanchall.DryWetMidi.Common;
+using Melanchall.DryWetMidi.Core;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Note = Melanchall.DryWetMidi.Interaction.Note;
 
 namespace MidiEditor
 {
     public partial class PianoRollControl : UserControl
     {
         public PictureBox GetPictureBoxBackgroundGrid { get; private set; }
-
-        public MidiFile MidiFile;
 
         public PianoRollControl()
         {
@@ -58,56 +53,117 @@ namespace MidiEditor
         private Button MakeNewButton(int noteNumber, long startTime, long duration, int channel, int trackNumber)
         {
             Button button = new Button();
-            button.Width = (int)(duration);
-            button.Height = AppSettings.YScale;
-            button.Location = new Point((int)(startTime), (127 - noteNumber) * AppSettings.YScale);
+            //button.Width = (int)(duration);
+            //button.Height = AppSettings.YScale;
+            //button.Location = new Point((int)(startTime), (127 - noteNumber) * AppSettings.YScale);
+
+            if (AppSettings.XScale != 100)
+            {
+                button.Width = (int)(duration * AppSettings.XScale / 100);
+                button.Height = AppSettings.YScale;
+                button.Location = new Point((int)(startTime * AppSettings.XScale / 100), (127 - noteNumber) * AppSettings.YScale);
+            }
+            else
+            {
+                button.Width = (int)duration;
+                button.Height = AppSettings.YScale;
+                button.Location = new Point((int)(startTime), (127 - noteNumber) * AppSettings.YScale);
+            }
+
+
             button.MouseDown += PianoRollButton_MouseDown;
             button.MouseUp += PianoRollButton_MouseUp;
-            button.FlatStyle = FlatStyle.Flat; 
+            button.FlatStyle = FlatStyle.Flat;
 
             MakeButtonResizeableAndMovable.Init(button);
 
-            Random rnd = new Random();
-            Color randomColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
+            button.BackColor = AppSettings.ChannelColors[channel];
 
-            button.BackColor = randomColor;
+            button.Click += PianoRollButton_Click;
 
             return button;
         }
 
-        public void DrawNotes(MidiFile midiFile)
+        private void PianoRollButton_Click(object sender, EventArgs e)
         {
-            if (midiFile != null)
+            Button button = (Button)sender;
+            switch (AppSettings.CurrentCursorStatus)
             {
-                this.MidiFile = midiFile;
-
-                int trackNumber = 0;
-                foreach (TrackChunk trackChunk in midiFile.GetTrackChunks())
-                {
-                    foreach (var note in trackChunk.GetNotes())
-                    {
-                        Button button = MakeNewButton(note.NoteNumber, note.Time, note.Length, note.Channel, trackNumber);
-                        this.Controls.Add(button);
-                        button.BringToFront();
-                        //
-                        // add MyEvent object
-                        // add to event list
-                        //
-                    }
-                    trackNumber++;
-                }
+                case AppSettings.CursorStatus.Default:
+                    AppSettings.EditorsControl.propertyGridNoteOnOffEvent.SelectedObject = AppSettings.PianoRollNotes.Where(x => x.Button == button).FirstOrDefault();
+                    break;
+                case AppSettings.CursorStatus.Erase:
+                    AppSettings.PianoRollNotes.RemoveAll(x => x.Button == button);
+                    this.Controls.Remove(button);
+                    button.Dispose();
+                    AppSettings.EditorsControl.propertyGridNoteOnOffEvent.SelectedObject = null;
+                    break;
             }
+        }
+
+        public void DrawNotes(Note note, int trackNumber)
+        {
+            Button pianoRollButton = MakeNewButton(note.NoteNumber, note.Time, note.Length, note.Channel, trackNumber);
+            NoteOnOffEventProperties noteOnOffEventProperties = new NoteOnOffEventProperties(note.Time, note.Length, note.NoteNumber, note.Velocity, note.Channel, trackNumber, pianoRollButton, false, (NoteOnEvent)note.GetTimedNoteOnEvent().Event, (NoteOffEvent)note.GetTimedNoteOffEvent().Event);
+            AppSettings.PianoRollNotes.Add(noteOnOffEventProperties);
+            this.Controls.Add(pianoRollButton);
+            pictureBoxBackgroundGrid.SendToBack();
+            pianoRollButton.BringToFront();
         }
 
         public void ReDrawNotes()
         {
-            if(MidiFile != null)
-            {
-                foreach (var button in this.Controls.OfType<Button>())
+            if (AppSettings.XScale != 100)
+                AppSettings.PianoRollNotes.ForEach(x =>
                 {
-                    button.Width -= button.Width * 1 / 4;
-                    button.Location = new Point(button.Location.X - 25, button.Location.Y);
+                    x.Button.Width = (int)(x.Length * AppSettings.XScale / 100);
+                    x.Button.Height = AppSettings.YScale;
+                    x.Button.Location = new Point((int)(x.Time * AppSettings.XScale / 100), (127 - x.Note) * AppSettings.YScale);
+                });
+            else
+                AppSettings.PianoRollNotes.ForEach(x =>
+                {
+                    x.Button.Width = (int)x.Length;
+                    x.Button.Height = AppSettings.YScale;
+                    x.Button.Location = new Point((int)(x.Time), (127 - x.Note) * AppSettings.YScale);
+                });
+        }
+
+        private void PianoRollControl_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (AppSettings.CurrentCursorStatus == AppSettings.CursorStatus.Create)
+            {
+                Note note = new Note((SevenBitNumber)(127 - (e.Y / AppSettings.YScale)), AppSettings.XScale);
+                if (AppSettings.XScale != 100)
+                {
+                    note.Time = e.X * 100 / AppSettings.XScale;
                 }
+                else
+                {
+                    note.Time = e.X;
+                }
+                note.Channel = (FourBitNumber)AppSettings.MainForm.toolStripComboBoxChannels.SelectedIndex;
+
+                DrawNotes(note, AppSettings.MainForm.toolStripComboBoxTracks.SelectedIndex);
+            }
+        }
+
+        private void pictureBoxBackgroundGrid_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (AppSettings.CurrentCursorStatus == AppSettings.CursorStatus.Create)
+            {
+                Note note = new Note((SevenBitNumber)(127 - (e.Y / AppSettings.YScale)), AppSettings.XScale);
+                if (AppSettings.XScale != 100)
+                {
+                    note.Time = e.X * 100 / AppSettings.XScale;
+                }
+                else
+                {
+                    note.Time = e.X;
+                }
+                note.Channel = (FourBitNumber)AppSettings.MainForm.toolStripComboBoxChannels.SelectedIndex;
+
+                DrawNotes(note, AppSettings.MainForm.toolStripComboBoxTracks.SelectedIndex);
             }
         }
     }

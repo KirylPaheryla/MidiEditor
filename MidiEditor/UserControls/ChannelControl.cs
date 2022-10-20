@@ -1,35 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MidiEditor.UserControls
 {
     public partial class ChannelControl : UserControl
     {
-        public string ChannelNumber { get; set; }
-        public int ChannelInstrument { get; set; }
+        public int ChannelNumber { get; set; }
         public Color ChannelColor { get; set; }
         public bool IsChannelVisible { get; set; }
 
-        public ChannelControl(string channelNumber, int channelInstrument, Color channelColor)
+        public ChannelControl(int channelNumber, Color channelColor)
         {
             InitializeComponent();
             ChannelNumber = channelNumber;
-            ChannelInstrument = channelInstrument;
             ChannelColor = channelColor;
-        }
 
-        private void buttonInstrumentSelection_Click(object sender, EventArgs e)
-        {
-            InstrumentSelectionForm instrumentSelectionForm = new InstrumentSelectionForm(this);
-            instrumentSelectionForm.MdiParent = AppSettings.ParentForm;
-            instrumentSelectionForm.Show();
+            labelChannelNumber.Text = $@"Channel {channelNumber}";
+            buttonColor.BackColor = ChannelColor;
+
+            AppSettings.ChannelControls.Add(this);
+            AppSettings.EditorsControl.flowLayoutPanelChannels.Controls.Add(this);
         }
 
         private void buttonColor_Click(object sender, EventArgs e)
@@ -44,12 +35,14 @@ namespace MidiEditor.UserControls
             {
                 buttonColor.ForeColor = colorDlg.Color;
                 ChannelColor = colorDlg.Color;
+                AppSettings.ChannelColors[ChannelNumber] = colorDlg.Color;
             }
         }
 
         private void checkBoxShow_CheckedChanged(object sender, EventArgs e)
         {
             IsChannelVisible = checkBoxShow.Checked;
+            AppSettings.PianoRollNotes.ForEach(x => x.Button.Visible = checkBoxShow.Checked);
         }
     }
 }

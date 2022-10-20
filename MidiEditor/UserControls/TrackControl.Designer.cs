@@ -73,22 +73,24 @@
             // buttonTrash
             // 
             this.buttonTrash.Image = ((System.Drawing.Image)(resources.GetObject("buttonTrash.Image")));
-            this.buttonTrash.Location = new System.Drawing.Point(146, 3);
+            this.buttonTrash.Location = new System.Drawing.Point(150, 4);
             this.buttonTrash.Name = "buttonTrash";
             this.buttonTrash.Size = new System.Drawing.Size(27, 46);
             this.buttonTrash.TabIndex = 3;
             this.buttonTrash.UseVisualStyleBackColor = true;
+            this.buttonTrash.Click += new System.EventHandler(this.buttonTrash_Click);
             // 
             // TrackControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Controls.Add(this.checkBoxShow);
             this.Controls.Add(this.buttonTrash);
             this.Controls.Add(this.labelTrackName);
             this.Controls.Add(this.labelTrackNumber);
             this.Name = "TrackControl";
-            this.Size = new System.Drawing.Size(176, 54);
+            this.Size = new System.Drawing.Size(180, 54);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -99,6 +101,6 @@
         private System.Windows.Forms.Label labelTrackNumber;
         private System.Windows.Forms.Label labelTrackName;
         private System.Windows.Forms.Button buttonTrash;
-        private System.Windows.Forms.CheckBox checkBoxShow;
+        public System.Windows.Forms.CheckBox checkBoxShow;
     }
 }
