@@ -39,7 +39,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonDelete.Image")));
-            this.buttonDelete.Location = new System.Drawing.Point(0, 136);
+            this.buttonDelete.Location = new System.Drawing.Point(0, 191);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(180, 29);
             this.buttonDelete.TabIndex = 9;
@@ -53,7 +53,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertyGridPitchBendEvent.Location = new System.Drawing.Point(0, 0);
             this.propertyGridPitchBendEvent.Name = "propertyGridPitchBendEvent";
-            this.propertyGridPitchBendEvent.Size = new System.Drawing.Size(180, 138);
+            this.propertyGridPitchBendEvent.Size = new System.Drawing.Size(180, 193);
             this.propertyGridPitchBendEvent.TabIndex = 8;
             this.propertyGridPitchBendEvent.ToolbarVisible = false;
             // 
@@ -65,7 +65,7 @@
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.propertyGridPitchBendEvent);
             this.Name = "PitchBendEventControl";
-            this.Size = new System.Drawing.Size(180, 165);
+            this.Size = new System.Drawing.Size(180, 220);
             this.ResumeLayout(false);
 
         }

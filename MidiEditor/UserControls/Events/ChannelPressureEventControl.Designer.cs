@@ -40,7 +40,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertyGridChannelPressureEvent.Location = new System.Drawing.Point(0, 0);
             this.propertyGridChannelPressureEvent.Name = "propertyGridChannelPressureEvent";
-            this.propertyGridChannelPressureEvent.Size = new System.Drawing.Size(180, 137);
+            this.propertyGridChannelPressureEvent.Size = new System.Drawing.Size(180, 192);
             this.propertyGridChannelPressureEvent.TabIndex = 0;
             this.propertyGridChannelPressureEvent.ToolbarVisible = false;
             // 
@@ -50,7 +50,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonDelete.Image")));
-            this.buttonDelete.Location = new System.Drawing.Point(0, 136);
+            this.buttonDelete.Location = new System.Drawing.Point(0, 191);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(180, 29);
             this.buttonDelete.TabIndex = 1;
@@ -65,7 +65,7 @@
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.propertyGridChannelPressureEvent);
             this.Name = "ChannelPressureEventControl";
-            this.Size = new System.Drawing.Size(180, 165);
+            this.Size = new System.Drawing.Size(180, 220);
             this.ResumeLayout(false);
 
         }

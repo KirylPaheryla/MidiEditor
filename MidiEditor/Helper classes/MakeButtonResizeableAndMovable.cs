@@ -9,28 +9,17 @@ namespace MidiEditor
         private static bool isMoving;
         private static bool isResizing;
         private static Point cursorStartPoint;
-        private static bool isMoveInternal;
         private static Size currentSize;
         private static bool isMouseOnLeftEdge;
         private static bool isMouseOnRightEdge;
-        private static ActionType CurrentActionType;
-
-        internal enum ActionType
-        {
-            Move,
-            Resize,
-            MoveAndResize
-        }
 
         internal static void Init(Button button)
         {
             isMoving = false;
             isResizing = false;
-            isMoveInternal = false;
             cursorStartPoint = Point.Empty;
             isMouseOnLeftEdge = false;
             isMouseOnRightEdge = false;
-            CurrentActionType = ActionType.MoveAndResize;
             button.MouseDown += (sender, e) => StartAction(button, e);
             button.MouseUp += (sender, e) => StopAction(button);
             button.MouseMove += (sender, e) => MoveButton(button, e);
@@ -38,20 +27,12 @@ namespace MidiEditor
 
         private static void UpdateMouseEdgeProperties(Button button, Point mouseLocationInControl)
         {
-            if (CurrentActionType == ActionType.Move)
-            {
-                return;
-            }
             isMouseOnLeftEdge = Math.Abs(mouseLocationInControl.X) <= 2;
             isMouseOnRightEdge = Math.Abs(mouseLocationInControl.X - button.Width) <= 2;
         }
 
         private static void UpdateMouseCursor(Button button)
         {
-            if (CurrentActionType == ActionType.Move)
-            {
-                return;
-            }
             if (isMouseOnLeftEdge)
             {
                 if (AppSettings.CurrentCursorStatus == AppSettings.CursorStatus.Erase)
@@ -81,12 +62,12 @@ namespace MidiEditor
             {
                 return;
             }
-            if (CurrentActionType != ActionType.Move && (isMouseOnLeftEdge || isMouseOnRightEdge))
+            if (isMouseOnLeftEdge || isMouseOnRightEdge)
             {
                 isResizing = true;
                 currentSize = button.Size;
             }
-            else if (CurrentActionType != ActionType.Resize)
+            else
             {
                 isMoving = true;
                 if (AppSettings.CurrentCursorStatus == AppSettings.CursorStatus.Erase)
@@ -123,38 +104,34 @@ namespace MidiEditor
             }
             else if (isMoving)
             {
-                isMoveInternal = !isMoveInternal;
-                if (!isMoveInternal)
-                {
-                    int x = (e.X - cursorStartPoint.X) + button.Left;
-                    int y = (e.Y - cursorStartPoint.Y) + button.Top;
+                int x = (e.X - cursorStartPoint.X) + button.Left;
+                int y = (e.Y - cursorStartPoint.Y) + button.Top;
 
-                    if (y % AppSettings.YScale == 0)
+                if (y % AppSettings.YScale == 0)
+                {
+                    button.Location = new Point(x, y);
+                }
+                else
+                {
+                    if (y > AppSettings.YScale)
                     {
-                        button.Location = new Point(x, y);
+                        for (int i = 1; i < AppSettings.YScale; i++)
+                        {
+                            if ((y - i) % AppSettings.YScale == 0)
+                                button.Location = new Point(x, y - i);
+                        }
+                    }
+                    else if (y < AppSettings.YScale)
+                    {
+                        for (int i = 1; i < AppSettings.YScale; i++)
+                        {
+                            if ((y + i) % AppSettings.YScale == 0)
+                                button.Location = new Point(x, y + i);
+                        }
                     }
                     else
                     {
-                        if (y > AppSettings.YScale)
-                        {
-                            for (int i = 1; i < AppSettings.YScale; i++)
-                            {
-                                if ((y - i) % AppSettings.YScale == 0)
-                                    button.Location = new Point(x, y - i);
-                            }
-                        }
-                        else if (y < AppSettings.YScale)
-                        {
-                            for (int i = 1; i < AppSettings.YScale; i++)
-                            {
-                                if ((y + i) % AppSettings.YScale == 0)
-                                    button.Location = new Point(x, y + i);
-                            }
-                        }
-                        else
-                        {
-                            button.Location = new Point(x, y);
-                        }
+                        button.Location = new Point(x, y);
                     }
                 }
             }

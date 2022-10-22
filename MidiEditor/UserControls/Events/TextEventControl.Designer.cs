@@ -39,7 +39,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonDelete.Image")));
-            this.buttonDelete.Location = new System.Drawing.Point(0, 136);
+            this.buttonDelete.Location = new System.Drawing.Point(0, 191);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(180, 29);
             this.buttonDelete.TabIndex = 17;
@@ -53,7 +53,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertyGridTextEvent.Location = new System.Drawing.Point(0, 0);
             this.propertyGridTextEvent.Name = "propertyGridTextEvent";
-            this.propertyGridTextEvent.Size = new System.Drawing.Size(180, 138);
+            this.propertyGridTextEvent.Size = new System.Drawing.Size(180, 193);
             this.propertyGridTextEvent.TabIndex = 16;
             this.propertyGridTextEvent.ToolbarVisible = false;
             // 
@@ -65,7 +65,7 @@
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.propertyGridTextEvent);
             this.Name = "TextEventControl";
-            this.Size = new System.Drawing.Size(180, 165);
+            this.Size = new System.Drawing.Size(180, 220);
             this.ResumeLayout(false);
 
         }

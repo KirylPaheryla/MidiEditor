@@ -241,7 +241,7 @@
     <Compile Include="UserControls\PianoRollControl.Designer.cs">
       <DependentUpon>PianoRollControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Main\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\EditorsControl.cs">
       <SubType>UserControl</SubType>
@@ -346,7 +346,7 @@
     <EmbeddedResource Include="UserControls\TrackControl.resx">
       <DependentUpon>TrackControl.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="Main\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -358,7 +358,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Main\App.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Pencil icon.ico" />
