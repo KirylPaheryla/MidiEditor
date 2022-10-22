@@ -100,7 +100,7 @@ namespace MidiEditor
 
         public void DrawNotes(Note note, int trackNumber)
         {
-            Button pianoRollButton = MakeNewButton(note.NoteNumber, note.Time, note.Length, note.Channel, trackNumber);
+            Button pianoRollButton = MakeNewButton(note.NoteNumber, note.Time, note.Length, note.Channel);
             NoteOnOffEventProperties noteOnOffEventProperties = new NoteOnOffEventProperties(note.Time, note.Length, note.NoteNumber, note.Velocity, note.Channel, trackNumber, pianoRollButton, false, (NoteOnEvent)note.GetTimedNoteOnEvent().Event, (NoteOffEvent)note.GetTimedNoteOffEvent().Event);
             AppSettings.PianoRollNotes.Add(noteOnOffEventProperties);
             this.Controls.Add(pianoRollButton);
