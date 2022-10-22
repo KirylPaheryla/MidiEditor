@@ -8,7 +8,7 @@ namespace MidiEditor.UserControls
     {
         public int ChannelNumber { get; set; }
         public Color ChannelColor { get; set; }
-        public bool IsChannelVisible { get; set; }
+        public bool IsChannelVisible { get; set; } = true;
 
         public ChannelControl(int channelNumber, Color channelColor)
         {
