@@ -50,12 +50,9 @@ namespace MidiEditor
             SoundMaker.StopSound(127 - (button.Location.Y / AppSettings.YScale));
         }
 
-        private Button MakeNewButton(int noteNumber, long startTime, long duration, int channel, int trackNumber)
+        private Button MakeNewButton(int noteNumber, long startTime, long duration, int channel)
         {
             Button button = new Button();
-            //button.Width = (int)(duration);
-            //button.Height = AppSettings.YScale;
-            //button.Location = new Point((int)(startTime), (127 - noteNumber) * AppSettings.YScale);
 
             if (AppSettings.XScale != 100)
             {
