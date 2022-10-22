@@ -22,7 +22,7 @@ namespace MidiEditor
             comboBoxChannel.Text = "0";
 
             for (int i = 0; i <= 127; i++)
-                comboBoxProgramNumber.Items.Add(AppSettings.GetInstrumentName(i));
+                comboBoxProgramNumber.Items.Add(AppTools.GetInstrumentName(i));
             comboBoxProgramNumber.SelectedIndex = 0;
             comboBoxProgramNumber.Text = "0";
         }
