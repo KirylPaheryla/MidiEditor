@@ -213,5 +213,13 @@ namespace MidiEditor
         {
             _playback.OutputDevice = OutputDevice.GetByIndex(comboBoxOutputDevice.SelectedIndex);
         }
+
+        private void checkBoxSelectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListBoxTracking.Items.Count; i++)
+            {
+                checkedListBoxTracking.SetItemChecked(i, checkBoxSelectAll.Checked);
+            }
+        }
     }
 }

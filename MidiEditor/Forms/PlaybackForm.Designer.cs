@@ -51,6 +51,7 @@
             this.comboBoxOutputDevice = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkedListBoxTracking = new System.Windows.Forms.CheckedListBox();
+            this.checkBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTimeLine)).BeginInit();
@@ -189,6 +190,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.checkBoxSelectAll);
             this.groupBox6.Controls.Add(this.checkedListBoxTracking);
             this.groupBox6.Location = new System.Drawing.Point(6, 133);
             this.groupBox6.Name = "groupBox6";
@@ -288,11 +290,22 @@
             "ProgramName",
             "SequenceTrackName",
             "Text"});
-            this.checkedListBoxTracking.Location = new System.Drawing.Point(6, 17);
+            this.checkedListBoxTracking.Location = new System.Drawing.Point(6, 47);
             this.checkedListBoxTracking.MultiColumn = true;
             this.checkedListBoxTracking.Name = "checkedListBoxTracking";
-            this.checkedListBoxTracking.Size = new System.Drawing.Size(250, 259);
+            this.checkedListBoxTracking.Size = new System.Drawing.Size(250, 229);
             this.checkedListBoxTracking.TabIndex = 0;
+            // 
+            // checkBoxSelectAll
+            // 
+            this.checkBoxSelectAll.AutoSize = true;
+            this.checkBoxSelectAll.Location = new System.Drawing.Point(98, 19);
+            this.checkBoxSelectAll.Name = "checkBoxSelectAll";
+            this.checkBoxSelectAll.Size = new System.Drawing.Size(69, 17);
+            this.checkBoxSelectAll.TabIndex = 1;
+            this.checkBoxSelectAll.Text = "Select all";
+            this.checkBoxSelectAll.UseVisualStyleBackColor = true;
+            this.checkBoxSelectAll.CheckedChanged += new System.EventHandler(this.checkBoxSelectAll_CheckedChanged);
             // 
             // PlaybackForm
             // 
@@ -312,6 +325,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTimeLine)).EndInit();
             this.groupBoxPlaybackSettings.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -341,5 +355,6 @@
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckedListBox checkedListBoxTracking;
+        private System.Windows.Forms.CheckBox checkBoxSelectAll;
     }
 }
