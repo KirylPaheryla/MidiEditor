@@ -1,7 +1,9 @@
-﻿using Melanchall.DryWetMidi.Interaction;
+﻿using Melanchall.DryWetMidi.Core;
+using Melanchall.DryWetMidi.Interaction;
 using Melanchall.DryWetMidi.Multimedia;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MidiEditor
@@ -21,8 +23,6 @@ namespace MidiEditor
             _playback.OutputDevice = AppSettings.OutputDevice;
             labelTime.Text = "0:0:0 - " + _playback.GetDuration(TimeSpanType.Metric);
             _playback.EventPlayed += _playback_EventPlayed;
-            _playback.NotesPlaybackStarted += _playback_NotesPlaybackStarted;
-            _playback.NotesPlaybackFinished += _playback_NotesPlaybackFinished;
 
             trackBarTimeLine.Maximum = (int)_playback.GetDuration<MetricTimeSpan>().TotalMicroseconds;
 
@@ -34,25 +34,95 @@ namespace MidiEditor
             comboBoxOutputDevice.Text = "Microsoft GS Wavetable Synth";
         }
 
-        private void _playback_NotesPlaybackFinished(object sender, NotesEventArgs e)
-        {
-            foreach (var note in e.Notes)
-            {
-                SetText("NoteOff " + note + "\n");
-            }
-        }
-
-        private void _playback_NotesPlaybackStarted(object sender, NotesEventArgs e)
-        {
-            foreach (var note in e.Notes)
-            {
-                SetText("NoteOn " + note + "\n");
-            }
-        }
-
         private void _playback_EventPlayed(object sender, MidiEventPlayedEventArgs e)
         {
-            SetText("Event " + e.Event + "\n");
+            switch (e.Event.EventType)
+            {
+                case MidiEventType.NoteOn:
+                    if (checkedListBoxTracking.GetItemChecked(0))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.NoteOff:
+                    if (checkedListBoxTracking.GetItemChecked(1))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.ChannelAftertouch:
+                    if (checkedListBoxTracking.GetItemChecked(2))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.ControlChange:
+                    if (checkedListBoxTracking.GetItemChecked(3))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.NoteAftertouch:
+                    if (checkedListBoxTracking.GetItemChecked(4))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.KeySignature:
+                    if (checkedListBoxTracking.GetItemChecked(5))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.PitchBend:
+                    if (checkedListBoxTracking.GetItemChecked(6))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.ProgramChange:
+                    if (checkedListBoxTracking.GetItemChecked(7))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.EscapeSysEx:
+                    if (checkedListBoxTracking.GetItemChecked(8))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.NormalSysEx:
+                    if (checkedListBoxTracking.GetItemChecked(9))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.SetTempo:
+                    if (checkedListBoxTracking.GetItemChecked(10))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.TimeSignature:
+                    if (checkedListBoxTracking.GetItemChecked(11))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.CopyrightNotice:
+                    if (checkedListBoxTracking.GetItemChecked(12))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.CuePoint:
+                    if (checkedListBoxTracking.GetItemChecked(13))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.DeviceName:
+                    if (checkedListBoxTracking.GetItemChecked(14))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.InstrumentName:
+                    if (checkedListBoxTracking.GetItemChecked(15))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.Lyric:
+                    if (checkedListBoxTracking.GetItemChecked(16))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.Marker:
+                    if (checkedListBoxTracking.GetItemChecked(17))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.ProgramName:
+                    if (checkedListBoxTracking.GetItemChecked(18))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.SequenceTrackName:
+                    if (checkedListBoxTracking.GetItemChecked(19))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+                case MidiEventType.Text:
+                    if (checkedListBoxTracking.GetItemChecked(20))
+                        SetText("Event " + e.Event + "\n");
+                    break;
+            }
         }
 
         private void buttonPlay_Click(object sender, EventArgs e)
@@ -115,26 +185,6 @@ namespace MidiEditor
         private void buttonSpeed2x_Click(object sender, EventArgs e)
         {
             _playback.Speed = 2;
-        }
-
-        private void checkBoxNotes_CheckedChanged(object sender, EventArgs e)
-        {
-            _playback.TrackNotes = checkBoxNotes.Checked;
-        }
-
-        private void checkBoxControlValue_CheckedChanged(object sender, EventArgs e)
-        {
-            _playback.TrackControlValue = checkBoxNotes.Checked;
-        }
-
-        private void checkBoxPitchValue_CheckedChanged(object sender, EventArgs e)
-        {
-            _playback.TrackPitchValue = checkBoxNotes.Checked;
-        }
-
-        private void checkBoxProgram_CheckedChanged(object sender, EventArgs e)
-        {
-            _playback.TrackProgram = checkBoxNotes.Checked;
         }
 
         private void trackBarTimeLine_Scroll(object sender, EventArgs e)
